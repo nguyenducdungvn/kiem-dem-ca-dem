@@ -2,7 +2,7 @@
 
 **Truyện tương tác kinh dị tâm lý, có bối cảnh 3D, viết bằng tiếng Việt. Chơi miễn phí ngay trên trình duyệt.**
 
-👉 **[Chơi ngay](https://nguyenducdungvn.github.io/kiem-dem-ca-dem/)** · ✍️ **[Góp ý](https://github.com/nguyenducdungvn/kiem-dem-ca-dem/issues/new/choose)** · 🔔 Bấm **Watch → Custom → Releases** để nhận tin khi có màn mới
+👉 **[Chơi ngay](https://nguyenducdungvn.github.io/kiem-dem-ca-dem/)** · ✍️ **[Góp ý](https://github.com/nguyenducdungvn/kiem-dem-ca-dem/issues/new/choose)** · 🔔 **[Đăng ký nhận màn mới](https://github.com/nguyenducdungvn/kiem-dem-ca-dem/issues/1)** (bấm Subscribe)
 
 ![Màn hình chính](docs/anh/man-hinh-chinh.jpg)
 
@@ -35,7 +35,7 @@
 
 - Trong game: khi chơi xong, hoặc ở màn hình chính, bấm **✍️ Góp ý**. Nội dung sẽ được điền sẵn vào một Issue trên GitHub.
 - Hoặc mở trực tiếp: [Góp ý, nhận xét](https://github.com/nguyenducdungvn/kiem-dem-ca-dem/issues/new?template=gop-y.yml) · [Báo lỗi kỹ thuật](https://github.com/nguyenducdungvn/kiem-dem-ca-dem/issues/new?template=loi-ky-thuat.yml)
-- Muốn nhận tin khi có mùa mới: bấm **Watch → Custom → Releases** ở đầu trang này, hoặc vào mục **🔔 Nhận truyện mới** trong game.
+- Muốn nhận tin khi có mùa mới: mở [trang đăng ký](https://github.com/nguyenducdungvn/kiem-dem-ca-dem/issues/1) và bấm **Subscribe**, hoặc bấm **Watch → Custom → Releases** ở đầu trang này.
 
 ## ☕ Mời tác giả một ly cà phê
 

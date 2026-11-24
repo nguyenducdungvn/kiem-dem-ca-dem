@@ -17,7 +17,7 @@ window.GAME_CONFIG = {
 
   /* Đăng ký nhận màn mới / câu chuyện tiếp theo */
   subscribe: {
-    issueUrl: '',                   // Issue "Đăng ký nhận truyện mới" (bấm Subscribe để nhận thông báo)
+    issueUrl: 'https://github.com/nguyenducdungvn/kiem-dem-ca-dem/issues/1',   // Issue "Đăng ký nhận truyện mới" (bấm Subscribe để nhận thông báo)
     links: [
       // { label: 'Trang Facebook', url: 'https://facebook.com/...' },
       // { label: 'Nhóm Zalo', url: 'https://zalo.me/g/...' }
