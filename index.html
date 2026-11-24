@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kiểm Đếm Ca Đêm · Nhà B4</title>
+  <meta name="description" content="Đêm cuối trước khi nhà tập thể B4 bị phá dỡ, bạn phải kiểm đếm 40 căn hộ bỏ trống. Nhưng tòa nhà không muốn bị đếm. Truyện tương tác kinh dị 3D bằng tiếng Việt.">
+  <meta name="theme-color" content="#07090c">
+  <meta property="og:title" content="Kiểm Đếm Ca Đêm · Nhà B4">
+  <meta property="og:description" content="Đêm cuối trước khi nhà tập thể B4 bị phá dỡ. Tòa nhà không muốn bị đếm.">
+  <link rel="preload" href="fonts/be-vietnam-pro-vietnamese-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/noto-serif-vietnamese-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="in-menu">
+  <canvas id="world" aria-hidden="true"></canvas>
+  <div id="labels" class="labels" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div id="fader" class="fader" aria-hidden="true"></div>
+
+  <!-- ===== MÀN HÌNH CHÍNH ===== -->
+  <section id="menu" class="menu" aria-labelledby="menu-title">
+    <div class="menu-inner">
+      <p class="kicker">Truyện tương tác kinh dị 3D · tiếng Việt</p>
+      <h1 id="menu-title">Kiểm Đếm Ca Đêm</h1>
+      <p class="sub">Nhà B4 · Trọn bộ 4 màn: Bàn giao · Cơi nới · Căn 509 · Chốt sổ</p>
+      <div class="hook">
+        <p>Đêm cuối cùng trước khi nhà tập thể B4 bị phá dỡ, bạn được giao kiểm đếm 40 căn hộ bỏ trống để lập hồ sơ đền bù. Chỉ cần sai một con số, một gia đình sẽ mất đi một góc nhà.</p>
+        <p>Nhưng tòa nhà không muốn bị đếm. Đồ đạc tự xếp về chỗ cũ, những bức vách biết trượt, và 39 hộ dân để lại những lời dặn kỳ lạ ở mặt sau phiếu bàn giao.</p>
+        <p class="q">5 giờ sáng, số liệu phải chốt. Đến lúc ấy, bạn còn đứng ở đâu trong tòa nhà?</p>
+      </div>
+      <ul class="facts">
+        <li>Khoảng 80 phút · 4 màn</li><li>Lựa chọn có hậu quả</li><li id="facts-endings">27 kết thúc để sưu tầm</li><li>Tự động lưu</li>
+      </ul>
+      <div class="menu-actions">
+        <button id="btn-continue" class="cta ghost" hidden>Tiếp tục ca trực</button>
+        <button id="btn-start" class="cta">Bắt đầu ca trực</button>
+      </div>
+      <nav class="menu-links" aria-label="Thông tin">
+        <button data-open="dlg-chapters">Chọn màn</button>
+        <button data-open="dlg-endings">Bộ sưu tập kết thúc <span id="endings-count" class="pill">0/27</span></button>
+        <button data-open="dlg-about">Giới thiệu &amp; phiên bản</button>
+        <button data-open="dlg-disclaimer">Miễn trừ</button>
+        <button data-open="dlg-feedback">✍️ Góp ý</button>
+        <button data-open="dlg-subscribe">🔔 Nhận truyện mới</button>
+        <button data-open="dlg-coffee">☕ Mời mình cà phê</button>
+      </nav>
+      <p class="foot"><span class="version">v1.0.0</span> · Nên đeo tai nghe · Di chuột để soi đèn pin</p>
+    </div>
+  </section>
+
+  <!-- ===== HUD ===== -->
+  <header class="hud">
+    <div class="brand">
+      <strong>Kiểm Đếm Ca Đêm</strong>
+      <span id="game-act"></span>
+    </div>
+    <div class="stats" aria-label="Chỉ số">
+      <div class="stat" title="Tỉnh táo: dưới 40 bắt đầu ảo giác, về 0 là thua">
+        <span class="lbl">Tỉnh táo</span><span class="track"><span class="fill tt" id="bar-TT"></span></span><span class="num" id="val-TT"></span>
+      </div>
+      <div class="stat" title="Tin cậy của đồng đội">
+        <span class="lbl">Tin cậy</span><span class="track"><span class="fill tc" id="bar-TC"></span></span><span class="num" id="val-TC"></span>
+      </div>
+      <div class="stat" title="Độ neo: tòa nhà giữ bạn lại. Từ 60 trở lên là thua">
+        <span class="lbl">Độ neo</span><span class="track"><span class="fill dn" id="bar-DN"></span></span><span class="num" id="val-DN"></span>
+      </div>
+      <div class="stat pinstat" title="Pin đèn chung cả nhóm. Mỗi lần vi phạm luật mất 1 nấc">
+        <span class="lbl">Pin</span><span class="pins" id="pins"></span>
+      </div>
+    </div>
+    <div class="tools">
+      <span class="clock" id="clock">--:--</span>
+      <button id="btn-journal" class="tool">Sổ tay <span class="badge" id="journal-count">0</span></button>
+      <button id="btn-hide" class="tool" aria-pressed="false">Xem cảnh</button>
+      <button id="btn-audio" class="tool" aria-pressed="true">♪ Bật</button>
+      <button id="btn-menu" class="tool" aria-label="Màn hình chính">☰</button>
+    </div>
+  </header>
+
+  <div id="location" class="location" aria-live="polite"></div>
+
+  <main id="stage" class="stage">
+    <div class="scene-head">
+      <span id="scene-time" class="scene-time"></span>
+      <h2 id="scene-title"></h2>
+    </div>
+    <div id="text" class="text"></div>
+    <div id="puzzle"></div>
+    <div id="timer" class="timer" hidden><div class="timer-track"><div id="timer-bar" class="timer-bar"></div></div><span id="timer-label"></span></div>
+    <nav id="choices" class="choices" aria-label="Lựa chọn"></nav>
+  </main>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <!-- ===== HỘP THOẠI ===== -->
+  <dialog id="journal" class="paper">
+    <h2>Sổ tay kiểm đếm</h2>
+    <h3>Phiếu bàn giao: lưu ý cho người đến sau</h3>
+    <p class="muted small">Luật càng nhiều hộ cùng ghi thì càng đáng tin.</p>
+    <ul id="journal-rules" class="rules"></ul>
+    <h3>Manh mối</h3>
+    <ul id="journal-clues" class="clues"></ul>
+    <button class="close choice"><span class="ct">Đóng sổ</span></button>
+  </dialog>
+
+  <dialog id="dlg-endings" class="paper">
+    <h2>Bộ sưu tập kết thúc</h2>
+    <p class="muted small">Mỗi kết thúc là một truyện ngắn. Gợi ý bên dưới giúp bạn tìm những kết thúc còn khóa.</p>
+    <ul id="endings-grid" class="endings"></ul>
+    <button class="close choice"><span class="ct">Đóng</span></button>
+  </dialog>
+
+  <dialog id="dlg-about" class="paper">
+    <h2>Giới thiệu</h2>
+    <p><b>Kiểm Đếm Ca Đêm · Nhà B4</b> là truyện tương tác kinh dị tâm lý, bối cảnh một khu tập thể cũ trong đêm cuối cùng trước khi bị giải tỏa để xây tòa tái định cư. Bạn vào vai một kỹ sư trắc địa trẻ. Vũ khí của bạn là bản vẽ, thước laser và khả năng đọc kỹ từng lời dặn.</p>
+    <p>Câu hỏi của game không phải là có nên phát triển hay không, mà là: <i>đi lên thì phải bàn giao trung thực.</i></p>
+    <h3>Cách chơi</h3>
+    <ul>
+      <li>Đọc lời kể, chọn A/B/C. Một số nút có đồng hồ đếm ngược.</li>
+      <li>Mở <b>Sổ tay</b> để xem luật đã thu và manh mối. Luật càng nhiều hộ xác nhận thì càng đáng tin.</li>
+      <li>Giữ bốn chỉ số: Tỉnh táo, Tin cậy, Độ neo và Pin (chung cả nhóm).</li>
+      <li>Nút <b>Xem cảnh</b> ẩn chữ để ngắm bối cảnh. Di chuột để soi đèn pin.</li>
+    </ul>
+    <h3>Phiên bản <span class="version">v0.3.0</span></h3>
+    <ul class="changelog">
+      <li><b>v1.0.0 · 24/11/2026 · Trọn bộ</b>: Màn 4 · Chốt sổ (màn cuối): chơi lại cảnh 5 giờ sáng với con số thay đổi theo lựa chọn, mini-game chọn mốc đo, lần ký cuối cùng, lễ bàn giao chìa khóa, phần kết kể số phận từng nhân vật, 4 kết cuối. Thêm Chọn màn, Góp ý, Nhận truyện mới. Xuất bản trên GitHub Pages.</li>
+      <li><b>v0.5.0</b>: Màn 3 · Căn 509: căn hộ ghép từ đồ bị bỏ quên, mini-game đối chiếu hai bản vẽ, livestream trước hàng chục nghìn người, 3 kết màn và 3 kết thúc thất bại mới. Thêm thông tin mời cà phê (mã QR BIDV).</li>
+      <li><b>v0.4.0</b>: Màn 2 · Cơi nới: chuồng cọp ma, mini-game quét sàn theo hồ sơ, nút đạo đức không đếm giờ, hộ cuối cùng, 3 kết màn và 3 kết thúc thất bại mới, 3 không gian 3D mới.</li>
+      <li><b>v0.3.0</b>: Viết lại Màn 1: mở đầu nhảy cóc lúc 5 giờ sáng, thêm khoảnh khắc nhân vật, đồng hồ đếm ngược, ba kết màn, bộ sưu tập kết thúc, âm thanh, màn hình giới thiệu.</li>
+      <li><b>v0.2.0</b>: Bối cảnh 3D, font tiếng Việt tự host.</li>
+      <li><b>v0.1.0</b>: Màn 1 bản đầu.</li>
+    </ul>
+    <h3>Lộ trình</h3>
+    <p>Màn 1 · Bàn giao ✓ → Màn 2 · Cơi nới ✓ → Màn 3 · Căn 509 ✓ → Màn 4 · Chốt sổ ✓. Mùa 2 đang được ấp ủ: hãy góp ý và đăng ký để nhận tin.</p>
+    <h3>Ghi công</h3>
+    <p class="small"><span class="author-line">Tác giả: <span class="author"></span>. </span>Kịch bản và lập trình thực hiện cùng Claude (Anthropic). Đồ họa 3D: Three.js (giấy phép MIT). Font: Be Vietnam Pro, Noto Serif, Roboto Mono (giấy phép SIL OFL).</p>
+    <button class="close choice"><span class="ct">Đóng</span></button>
+  </dialog>
+
+  <dialog id="dlg-disclaimer" class="paper">
+    <h2>Miễn trừ</h2>
+    <ul>
+      <li><b>Hư cấu.</b> Mọi nhân vật, địa danh (khu tập thể Tân Hòa, nhà B4) và sự kiện trong game đều do tưởng tượng. Mọi sự trùng hợp với người, nơi chốn hay sự việc có thật đều là ngẫu nhiên.</li>
+      <li><b>Không nhằm đánh giá chính sách.</b> Bối cảnh lấy cảm hứng từ các chương trình cải tạo chung cư cũ và giải phóng mặt bằng đang diễn ra. Game không nhằm phản ánh, đánh giá hay công kích bất kỳ cá nhân, tổ chức, cơ quan hay chính sách nào.</li>
+      <li><b>Không phải tư vấn pháp lý.</b> Các chi tiết về đền bù, hệ số K, kiểm đếm bắt buộc đã được đơn giản hóa để phục vụ cốt truyện. Khi cần thông tin chính xác, hãy tra cứu văn bản chính thức hoặc hỏi cơ quan có thẩm quyền.</li>
+      <li><b>Nội dung.</b> Kinh dị tâm lý, không máu me. Có yếu tố căng thẳng, bệnh tật của người thân và giằng xé đạo đức. Khuyến nghị người chơi từ 13 tuổi.</li>
+      <li><b>Dữ liệu.</b> Game chỉ lưu tiến trình và bộ sưu tập kết thúc trong trình duyệt của bạn. Không thu thập và không gửi dữ liệu đi đâu.</li>
+      <li><b>Bản quyền.</b> Nội dung truyện thuộc về tác giả. Thư viện và font dùng theo giấy phép ghi ở mục Giới thiệu.</li>
+    </ul>
+    <button class="close choice"><span class="ct">Đã hiểu</span></button>
+  </dialog>
+
+  <dialog id="dlg-coffee" class="paper">
+    <h2>☕ Mời mình một ly cà phê</h2>
+    <p><b>Cảm ơn bạn đã đọc!</b> Game miễn phí và sẽ luôn miễn phí.</p>
+    <div id="coffee-body"></div>
+    <p class="small muted">Chia sẻ game cho bạn bè cũng là một cách ủng hộ rất lớn. <button id="btn-share" class="tool">Chép đường dẫn</button></p>
+    <button class="close choice"><span class="ct">Đóng</span></button>
+  </dialog>
+
+  <dialog id="dlg-chapters" class="paper">
+    <h2>Chọn màn</h2>
+    <p class="muted small">Màn nào bạn đã tới thì mở. Chơi từ một màn sẽ dùng lại các lựa chọn bạn đã có lúc bước vào màn ấy.</p>
+    <ul id="chapters-list" class="chapters"></ul>
+    <button class="close choice"><span class="ct">Đóng</span></button>
+  </dialog>
+
+  <dialog id="dlg-feedback" class="paper">
+    <h2>✍️ Góp ý cho tác giả</h2>
+    <p class="small">Mỗi nhận xét đều được đọc, và giúp các màn sau hay hơn.</p>
+    <form id="fb-form" class="fb" onsubmit="return false">
+      <fieldset class="stars" aria-label="Chấm điểm">
+        <legend>Bạn chấm câu chuyện mấy sao?</legend>
+        <div id="fb-stars" role="radiogroup"></div>
+      </fieldset>
+      <label>Nhân vật bạn nhớ nhất
+        <select id="fb-char">
+          <option value="">(chọn)</option><option>Thục Anh</option><option>Út Thơ</option><option>Anh Phát</option><option>Chị Trâm</option><option>Ông Kha</option><option>Chính nhà B4</option>
+        </select>
+      </label>
+      <label>Đoạn làm bạn nhớ nhất
+        <input id="fb-moment" type="text" maxlength="200" placeholder="Ví dụ: ổ bánh mì, căn 509, lễ bàn giao…">
+      </label>
+      <label>Điều nên cải thiện, hoặc ý tưởng cho mùa sau
+        <textarea id="fb-text" rows="4" maxlength="1500" placeholder="Viết thoải mái…"></textarea>
+      </label>
+      <label class="check"><input id="fb-sub" type="checkbox"> Tôi muốn nhận câu chuyện tiếp theo</label>
+      <p class="warn small">Góp ý gửi qua GitHub sẽ hiển thị công khai. Đừng ghi số điện thoại hay địa chỉ.</p>
+      <div class="fb-actions" id="fb-actions"></div>
+    </form>
+    <button class="close choice"><span class="ct">Đóng</span></button>
+  </dialog>
+
+  <dialog id="dlg-subscribe" class="paper">
+    <h2>🔔 Nhận câu chuyện tiếp theo</h2>
+    <p>Nhà B4 đã bàn giao xong, nhưng thành phố còn rất nhiều khu nhà đang chờ được đo đếm. Để không lỡ màn mới hay mùa mới:</p>
+    <ol class="sub-list" id="sub-list"></ol>
+    <button class="close choice"><span class="ct">Đóng</span></button>
+  </dialog>
+
+  <script src="js/config.js"></script>
+  <script src="js/vendor/three.min.js"></script>
+  <script src="js/story-act1.js"></script>
+  <script src="js/story-act2.js"></script>
+  <script src="js/story-act3.js"></script>
+  <script src="js/story-act4.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/scene3d.js"></script>
+  <script src="js/engine.js"></script>
+</body>
+</html>
