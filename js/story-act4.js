@@ -26,7 +26,7 @@
 <defs><pattern id="g10" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#1d4f7c" stroke-width="0.6"/></pattern>
 <pattern id="h10" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#3a1520"/><line x1="0" y1="0" x2="0" y2="8" stroke="#ff7a7a" stroke-width="1.5"/></pattern></defs>
 <rect width="100%" height="100%" fill="#0b2a4a"/><rect width="100%" height="100%" fill="url(#g10)"/>
-<text x="20" y="28" fill="#cfe4ff" font-family="${F}" font-size="14">HÀNH LANG TẦNG 5 · MẶT BẰNG · đang dài ra</text>
+<text x="20" y="28" fill="#cfe4ff" font-family="${F}" font-size="14">Hành lang tầng 5 · Mặt bằng · đang dài ra</text>
 <rect x="40" y="110" width="400" height="60" fill="#102f4f" stroke="#3d7ab0"/>
 <rect x="440" y="110" width="150" height="60" fill="url(#h10)" stroke="#ff7a7a" stroke-dasharray="5 4"/>
 <text x="446" y="226" fill="#ff9b9b" font-family="${F}" font-size="11">không có trong hồ sơ nào</text>
@@ -100,7 +100,7 @@ ${doors}
     /* ===== NÚT 10 ===== */
     nut10: {
       time: '05:04',
-      title: 'NÚT 10 · Mốc',
+      title: 'Nút 10 · Mốc',
       checkpoint: true,
       danger: true,
       timer: { sec: 25, next: 'n10_sai', label: 'Hành lang đang dài ra' },
@@ -164,7 +164,7 @@ ${doors}
     /* ===== NÚT 11 (không đồng hồ) ===== */
     nut11: {
       time: '05:10',
-      title: 'NÚT 11 · Chốt sổ',
+      title: 'Nút 11 · Chốt sổ',
       checkpoint: true,
       text: (s) => {
         const t = ['Phần mềm mở ô cuối cùng: “Ghi chú cho phần diện tích chênh lệch: 9,6 m². Sau khi ký, số liệu sẽ được chốt và không thể sửa.”'];
@@ -214,7 +214,7 @@ ${doors}
     /* ===== NÚT 12 ===== */
     nut12: {
       time: '06:52',
-      title: 'NÚT 12 · Bàn giao chìa khóa',
+      title: 'Nút 12 · Bàn giao chìa khóa',
       checkpoint: true,
       timer: { sec: 30, next: 'n12_thu_tuc', label: 'Lễ khởi công sắp bắt đầu' },
       text: (s) => {

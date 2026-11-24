@@ -60,7 +60,7 @@
     hum.connect(hg).connect(master); hum.start();
     amb = { g };
     // tiếng kẽo kẹt ngẫu nhiên của tòa nhà cũ
-    setInterval(() => { if (ctx && !muted && Math.random() < 0.35) creak(0.04); }, 7000);
+    setInterval(() => { if (ctx && !muted && mood !== 'dawn' && Math.random() < 0.35) creak(0.04); }, 7000);
   }
   function creak(v) {
     const t = ctx.currentTime;
@@ -107,6 +107,36 @@
     if (!ctx || muted || !BANK[name]) return;
     try { BANK[name](); } catch (e) { /* bỏ qua lỗi âm thanh */ }
   }
+  /* ---------- Nhạc nền theo màn: night (đêm) · tense (căng thẳng) · dawn (bình minh) ---------- */
+  let mood = null, moodNodes = [];
+  const CHORDS = {
+    night: [[110, 130.8, 164.8], [98, 116.5, 146.8]],          // La thứ, Sol thứ: trầm, lạnh
+    tense: [[103.8, 110, 155.6], [116.5, 123.5, 174.6]],        // quãng nửa cung chồng nhau
+    dawn: [[130.8, 164.8, 196], [146.8, 185, 220], [174.6, 220, 261.6]] // Đô trưởng, Rê trưởng, Fa trưởng
+  };
+  function setMood(name) {
+    if (!ctx || name === mood) return;
+    mood = name;
+    const t = ctx.currentTime;
+    moodNodes.forEach((n) => { try { n.g.gain.cancelScheduledValues(t); n.g.gain.setValueAtTime(n.g.gain.value, t); n.g.gain.linearRampToValueAtTime(0, t + 3); n.o.forEach((o) => o.stop(t + 3.2)); } catch (e) { /* bỏ qua */ } });
+    moodNodes = [];
+    if (amb) amb.g.gain.linearRampToValueAtTime(name === 'dawn' ? 0.05 : name === 'tense' ? 0.2 : 0.16, t + 3);
+    const chords = CHORDS[name]; if (!chords) return;
+    const g = ctx.createGain(); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(name === 'dawn' ? 0.05 : 0.03, t + 4);
+    const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = name === 'dawn' ? 1400 : 700;
+    const lfo = ctx.createOscillator(); lfo.frequency.value = name === 'tense' ? 0.35 : 0.08;
+    const lfoG = ctx.createGain(); lfoG.gain.value = name === 'dawn' ? 300 : 200; lfo.connect(lfoG).connect(lp.frequency);
+    lp.connect(g).connect(master);
+    const oscs = [lfo];
+    const voices = chords[0].map(() => { const o = ctx.createOscillator(); o.type = name === 'dawn' ? 'triangle' : 'sawtooth'; o.connect(lp); o.start(); oscs.push(o); return o; });
+    lfo.start();
+    let step = 0;
+    const apply = () => { const c = chords[step % chords.length]; voices.forEach((o, i) => o.frequency.setTargetAtTime(c[i] * (name === 'tense' ? 1 + Math.random() * 0.004 : 1), ctx.currentTime, 1.5)); step++; };
+    apply();
+    const iv = setInterval(() => { if (mood !== name) return clearInterval(iv); apply(); }, name === 'dawn' ? 6000 : 9000);
+    moodNodes.push({ g, o: oscs });
+  }
+
   function setMuted(m) {
     muted = m;
     try { localStorage.setItem('kdcd_mute', m ? '1' : '0'); } catch (e) { /* bỏ qua */ }
@@ -114,5 +144,5 @@
     if (m) clearLoops();
   }
 
-  window.SFX = { unlock, play, setMuted, isMuted: () => muted, stopLoops: clearLoops };
+  window.SFX = { unlock, play, setMuted, setMood, isMuted: () => muted, stopLoops: clearLoops };
 })();

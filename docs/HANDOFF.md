@@ -1,11 +1,13 @@
-# BÀN GIAO · Kiểm Đếm Ca Đêm (v1.0.0, 24/11/2026)
+# BÀN GIAO · Kiểm Đếm Ca Đêm (v1.1.0, 24/11/2026)
 
 > Dán file này vào chat mới (hoặc bảo Claude đọc `claude/kiem-dem-ca-dem-handoff.md` trong Project "App GAME"), **kèm file `kiem-dem-ca-dem.zip` bản mới nhất**. Đọc file này là đủ để làm tiếp. Chỉ mở file code khi cần sửa.
 
 ## 1. Trạng thái
-- **TRỌN BỘ 4 MÀN (v1.0.0), đã đẩy lên GitHub:** https://github.com/nguyenducdungvn/kiem-dem-ca-dem (nhánh `main`). Chơi tại https://kiemdem.hlvsuckhoe.com/ (GitHub Pages, tên miền riêng; link cũ nguyenducdungvn.github.io/kiem-dem-ca-dem/ tự chuyển về). Bản dự phòng: https://claude.ai/artifact/69y8DDznTGGFhhb8Vr9W6M
+- **TRỌN BỘ 4 MÀN (v1.1.0), đã đẩy lên GitHub:** https://github.com/nguyenducdungvn/kiem-dem-ca-dem (nhánh `main`). Chơi tại https://kiemdem.hlvsuckhoe.com/ (GitHub Pages, tên miền riêng; link cũ nguyenducdungvn.github.io/kiem-dem-ca-dem/ tự chuyển về). Bản dự phòng: https://claude.ai/artifact/69y8DDznTGGFhhb8Vr9W6M
 - Toàn game có 10 luật, 27 manh mối, 27 kết thúc (13 kết màn hoặc kết cuối, 14 kết thúc thất bại), tất cả đều tới được. `check.js` đã duyệt 4,26 triệu trạng thái, 0 lỗi.
 - Có màn hình chính, Chọn màn, Bộ sưu tập kết thúc, Góp ý (GitHub Issue điền sẵn hoặc chép nội dung), Nhận truyện mới, Mời cà phê (BIDV 3210256468, NGUYEN DUC DUNG, VietQR), Miễn trừ, Giới thiệu & phiên bản.
+- **v1.1.0:** chế độ đọc truyện (`kdcd_settings_v1.story`; clamp TT/PIN ≥1, DN ≤59, bỏ statFail và đồng hồ), thẻ minh họa SVG cho 27 kết thúc (`js/icons.js`, `EndingIcon(id)`), nhạc nền `SFX.setMood('night'|'tense'|'dawn')` gọi trong stage3D, phím tắt (1–4/A–D, Space/Enter, J, H, M), nút chia sẻ kết thúc (navigator.share hoặc chép), favicon + ảnh OG `images/og-cover.jpg`, giảm pixel ratio trên mobile. Rà soát: bỏ chữ hoa có dấu, gợi ý kết thúc đúng màn, miễn trừ nói rõ Cloudflare Web Analytics, chị Trâm 36 tuổi. Lịch sử: `CHANGELOG.md`.
+- **Giữ nguyên:** file `CNAME` và thẻ script Cloudflare beacon cuối `index.html` (do tác giả thêm).
 - **Còn trống trong `js/config.js`:** `feedback.email`, `feedback.formUrl`, `subscribe.links` (Facebook/Zalo). Điền khi tác giả gửi.
 - Làm việc với repo: thư mục dự án chính là working copy của git. Commit theo đúng dòng attribution trong system-reminder.
 
@@ -60,7 +62,7 @@
 - **Lỗi đã sửa, cần nhớ:** `[hidden]{display:none!important}` (CSS display ghi đè thuộc tính hidden). typeParagraphs dùng token để chặn handler cũ. Timer tự dừng khi đổi cảnh.
 
 ## 6. Việc tiếp theo (đề xuất cho tác giả)
-1. **Bản 1.1 (đánh bóng):** thêm âm thanh lời thoại ngắn hoặc nhạc nền theo màn; minh họa 2D cho các kết thúc (thẻ bài); chế độ "đọc truyện" không có đồng hồ cho người đọc chậm; bản tiếng Anh.
+1. **Bản 1.2:** bản tiếng Anh (tách chuỗi ra `lang/en.js`); PWA cài lên điện thoại, chơi offline; trang thống kê "bao nhiêu % người chơi chọn…" (cần backend nhẹ). Phát hành GitHub Release v1.1.0 bằng tay (phiên Claude không tạo được Release).
 2. **Mùa 2 · "Phiếu bàn giao"** (tuyển tập độc lập, mỗi tập 1 khu nhà, 2–3 màn, dùng chung engine): một làng ven sông trong diện di dời; một chợ cũ sắp thành trung tâm thương mại; một nhà máy cũ thành khu đô thị; một nghĩa trang làng cần quy tập. Thục Anh là nhân vật xuyên suốt, mỗi tập một bộ luật mới, cùng chủ đề "bàn giao trung thực".
 3. **Kết nối người đọc:** tạo Facebook/Zalo và Google Form để điền vào config; viết Discussions "Bạn được kết thúc nào?"; phát hành bản Release cho mỗi tập để người theo dõi nhận thông báo.
 4. **Mở rộng giá trị:** bản cho lớp học (giáo dục công dân, kỹ năng đọc hồ sơ và kiểm chứng thông tin) kèm phiếu thảo luận; bản cho đào tạo nội bộ ngành trắc địa/GPMB về quy trình kiểm đếm minh bạch.

@@ -12,7 +12,7 @@ STORY.meta = {
   title: 'Kiểm Đếm Ca Đêm',
   subtitle: 'Nhà B4',
   act: 'Màn 1 · Bàn giao',
-  version: '1.0.0'
+  version: '1.1.0'
 };
 
 /* ---------- Bộ luật: Phiếu bàn giao căn hộ ---------- */
@@ -59,7 +59,7 @@ const BP_LEGEND = (x, y) => `
 const SVG_P1 = `
 <svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bản vẽ căn 304">
 ${BP_DEFS}
-<text x="20" y="28" fill="#cfe4ff" font-family="Roboto Mono, monospace" font-size="14">BẢN VẼ HOÀN CÔNG 1979 · NHÀ B4 · CĂN 304</text>
+<text x="20" y="28" fill="#cfe4ff" font-family="Roboto Mono, monospace" font-size="14">Bản vẽ hoàn công 1979 · Nhà B4 · Căn 304</text>
 <!-- sàn -->
 <rect x="140" y="70" width="380" height="250" fill="none" stroke="#3d7ab0" stroke-dasharray="4 4"/>
 <!-- A: tường hồi phía tây (chịu lực) -->
@@ -89,7 +89,7 @@ ${BP_LEGEND(400, 370)}
 const SVG_P2 = `
 <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mặt đứng tường đông căn 207">
 ${BP_DEFS}
-<text x="20" y="28" fill="#cfe4ff" font-family="Roboto Mono, monospace" font-size="14">CĂN 207 · MẶT ĐỨNG TƯỜNG ĐÔNG · THƯỚC LASER</text>
+<text x="20" y="28" fill="#cfe4ff" font-family="Roboto Mono, monospace" font-size="14">Căn 207 · Mặt đứng tường đông · Thước laser</text>
 <rect x="40" y="60" width="560" height="280" fill="#102f4f" stroke="#9cc9ff"/>
 <!-- cửa sổ -->
 <rect x="60" y="110" width="110" height="150" fill="#0b2a4a" stroke="#9cc9ff"/>
@@ -112,10 +112,10 @@ ${BP_DEFS}
 const SVG_P3 = `
 <svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bản vẽ căn 405 và 406">
 ${BP_DEFS}
-<text x="20" y="28" fill="#cfe4ff" font-family="Roboto Mono, monospace" font-size="14">BẢN VẼ HOÀN CÔNG 1979 · TẦNG 4 · CĂN 405 – 406</text>
+<text x="20" y="28" fill="#cfe4ff" font-family="Roboto Mono, monospace" font-size="14">Bản vẽ hoàn công 1979 · Tầng 4 · Căn 405 – 406</text>
 <!-- hành lang -->
 <rect x="60" y="60" width="520" height="40" fill="#102f4f" stroke="#3d7ab0"/>
-<text x="270" y="86" fill="#7fa7cf" font-family="Roboto Mono, monospace" font-size="12">HÀNH LANG</text>
+<text x="270" y="86" fill="#7fa7cf" font-family="Roboto Mono, monospace" font-size="12">Hành lang</text>
 <!-- V2: tường giữa 406 và hành lang (chịu lực) -->
 <rect class="hit" data-id="V2" x="330" y="100" width="250" height="20" fill="url(#hatch)" stroke="#9cc9ff"/>
 <text x="440" y="96" fill="#ffd27a" font-family="Roboto Mono, monospace" font-size="14">V2</text>
@@ -255,7 +255,7 @@ STORY.scenes = {
   /* ===== NÚT 1 ===== */
   nut1: {
     time: '23:00',
-    title: 'NÚT 1 · Giờ dọn nhà',
+    title: 'Nút 1 · Giờ dọn nhà',
     checkpoint: true,
     danger: true,
     timer: { sec: 20, next: 'n1_het_gio', label: 'Vách đang trượt' },
@@ -386,7 +386,7 @@ STORY.scenes = {
   /* ===== NÚT 2 ===== */
   nut2: {
     time: '00:20',
-    title: 'NÚT 2 · Chiếc đồng hồ còn chạy',
+    title: 'Nút 2 · Chiếc đồng hồ còn chạy',
     checkpoint: true,
     danger: true,
     text: [
@@ -468,7 +468,7 @@ STORY.scenes = {
   /* ===== NÚT 3 ===== */
   nut3: {
     time: '01:40',
-    title: 'NÚT 3 · Chiếc kẹp tóc dưới gầm giường',
+    title: 'Nút 3 · Chiếc kẹp tóc dưới gầm giường',
     checkpoint: true,
     danger: true,
     timer: { sec: 25, next: 'n3_het_gio', label: 'Út Thơ sắp đáp lời' },
@@ -663,15 +663,15 @@ STORY.scenes = {
 
 /* ---------- Bộ sưu tập kết thúc ---------- */
 STORY.endingsList = [
-  { id: 'ket_thu_nhan', title: 'Kết màn: Lời thú nhận', kind: 'act', hint: 'Đủ tin cậy để một người tự nói ra sự thật.' },
-  { id: 'ket_kep_toc', title: 'Kết màn: Nét chữ trên kẹp tóc', kind: 'act', hint: 'Đọc bản vẽ để mở một lối không có cửa.' },
-  { id: 'ket_tieng_da', title: 'Kết màn: Tiếng “dạ”', kind: 'act', hint: 'Có những lời không nên đáp.' },
+  { id: 'ket_thu_nhan', title: 'Kết Màn 1: Lời thú nhận', kind: 'act', act: 1, hint: 'Đủ tin cậy để một người tự nói ra sự thật.' },
+  { id: 'ket_kep_toc', title: 'Kết Màn 1: Nét chữ trên kẹp tóc', kind: 'act', act: 1, hint: 'Đọc bản vẽ để mở một lối không có cửa.' },
+  { id: 'ket_tieng_da', title: 'Kết Màn 1: Tiếng “dạ”', kind: 'act', act: 1, hint: 'Có những lời không nên đáp.' },
   { id: 'buc_tuong_moi', title: 'Bức tường mới', kind: 'fail', hint: 'Hai bước chân dài hơn bạn tưởng.' },
   { id: 'can_ho_di_theo', title: 'Căn hộ đi theo', kind: 'fail', hint: 'Có thứ không nên mang ra khỏi nhà.' },
   { id: 'do_de_quen', title: 'Đồ để quên', kind: 'fail', hint: 'Một cuộc đổi chác quá dễ dàng.' },
-  { id: 'o_lai', title: 'Ở lại', kind: 'fail', hint: 'Khi tòa nhà neo bạn quá chặt. (các màn sau)' },
-  { id: 'do_mai', title: 'Đo mãi', kind: 'fail', hint: 'Khi tỉnh táo cạn kiệt vì quá nhiều lựa chọn sai.' },
-  { id: 'tat_den', title: 'Tắt đèn', kind: 'fail', hint: 'Khi pin của cả nhóm về không. (các màn sau)' }
+  { id: 'o_lai', title: 'Ở lại', kind: 'fail', act: 2, hint: 'Khi tòa nhà neo bạn quá chặt: Độ neo chạm 60.' },
+  { id: 'do_mai', title: 'Đo mãi', kind: 'fail', act: 1, hint: 'Khi tỉnh táo cạn kiệt vì quá nhiều lựa chọn sai.' },
+  { id: 'tat_den', title: 'Tắt đèn', kind: 'fail', act: 4, hint: 'Không ai chịu ký vào con số cuối cùng.' }
 ];
 STORY.actEndingOf = (s) => (s.flags.phat_thu_nhan ? 'ket_thu_nhan' : s.flags.l7_cua_phat ? 'ket_kep_toc' : 'ket_tieng_da');
 

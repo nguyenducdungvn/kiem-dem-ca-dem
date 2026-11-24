@@ -12,7 +12,7 @@
 >
 > 5 giờ sáng, số liệu phải chốt. Đến lúc ấy, bạn còn đứng ở đâu trong tòa nhà?
 
-## Trọn bộ 4 màn (v1.0.0)
+## Trọn bộ 4 màn (v1.1.0)
 
 | Màn | Thời gian | Bạn sẽ gặp |
 |---|---|---|
@@ -25,7 +25,13 @@
 - Lựa chọn có hậu quả xuyên suốt 4 màn. Có đồng hồ đếm ngược ở các nút nguy hiểm.
 - Mini-game theo đúng nghề trắc địa: đọc bản vẽ hoàn công, quét laser, đối chiếu hồ sơ, chọn mốc đo.
 - Bối cảnh 3D dựng hoàn toàn bằng code: tường vôi vàng, gạch hoa, chuồng cọp, loa phường.
-- Âm thanh tự tạo. Font tiếng Việt chuẩn có sẵn trong dự án, chơi được cả khi không có mạng.
+- Âm thanh và nhạc nền tự tạo, đổi theo không khí từng màn (đêm, căng thẳng, bình minh). Font tiếng Việt chuẩn có sẵn trong dự án, chơi được cả khi không có mạng.
+
+### Mới ở bản 1.1
+- **Chế độ đọc truyện:** bật ở màn hình chính. Không có đồng hồ đếm ngược, chỉ số không làm bạn thua. Hợp với ai muốn đọc thong thả.
+- **Thẻ minh họa** cho cả 27 kết thúc trong Bộ sưu tập.
+- **Phím tắt:** 1–4 hoặc A–D để chọn · Space/Enter hiện hết chữ · J sổ tay · H ẩn chữ · M âm thanh.
+- **Nút chia sẻ kết thúc**, ảnh xem trước khi dán link lên mạng xã hội. Xem đầy đủ trong [CHANGELOG.md](CHANGELOG.md).
 
 | | |
 |---|---|
@@ -80,5 +86,6 @@ Repo đã cấu hình để GitHub Pages phục vụ từ nhánh `main`, thư m�
 ## Bản quyền và miễn trừ
 - Nội dung truyện © Nguyễn Đức Dũng. Mọi nhân vật, địa danh (khu tập thể Tân Hòa, nhà B4) và sự kiện đều hư cấu.
 - Game không nhằm đánh giá hay công kích cá nhân, tổ chức hay chính sách nào. Các chi tiết về đền bù, hệ số K và kiểm đếm bắt buộc đã được đơn giản hóa để phục vụ cốt truyện, không phải tư vấn pháp lý.
+- Trang dùng Cloudflare Web Analytics để đếm lượt xem: không cookie, không lưu địa chỉ IP. Tiến trình chơi chỉ lưu trên trình duyệt của bạn. Góp ý chỉ được gửi khi bạn tự bấm gửi.
 - Thư viện Three.js theo giấy phép MIT (`js/vendor/THREE-LICENSE.txt`). Font theo giấy phép SIL Open Font License (`fonts/LICENSE-*.txt`).
 - Kịch bản và mã nguồn được thực hiện cùng Claude (Anthropic).

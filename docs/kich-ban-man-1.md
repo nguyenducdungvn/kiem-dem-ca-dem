@@ -24,7 +24,7 @@
 | **Lương Thục Anh** (người chơi) | Kỹ sư trắc địa, 26 tuổi | Cần tiền thưởng để trả viện phí cho mẹ. Đọc được bản vẽ, đo bằng laser |
 | **Đoàn Vĩnh Phát** | Trưởng nhóm, 41 tuổi, cựu cán bộ phường | Lấy đồ ở các căn bỏ trống. Năm 2016 xác nhận khống phần cơi nới |
 | **Mai Ngọc Thơ (Út Thơ)** | Sinh viên chụp ảnh hiện trạng, livestreamer | Camera ban đêm thấy được "trí nhớ" của căn phòng |
-| **Nghiêm Bảo Trâm** | Cán bộ hội đồng bồi thường, 33 tuổi | Nhà cũ ở căn 502. Có liên quan đến con số 9,6 m² |
+| **Nghiêm Bảo Trâm** | Cán bộ hội đồng bồi thường, 36 tuổi (8 tuổi năm 1998) | Nhà cũ ở căn 502. Có liên quan đến con số 9,6 m² |
 | **Tạ Hữu Kha** | Bảo vệ cũ, hộ cuối cùng, 63 tuổi | Giữ 40 chìa khóa nhưng chỉ có 39 phiếu. Thiếu phiếu của chính ông |
 
 ## 3. Chỉ số

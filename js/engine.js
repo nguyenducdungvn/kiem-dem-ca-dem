@@ -46,13 +46,24 @@
     return false;
   }
 
+  /* ---------- Cài đặt: chế độ đọc truyện ---------- */
+  const SET_KEY = 'kdcd_settings_v1';
+  const settings = Object.assign({ story: false }, read(SET_KEY) || {});
+  const storyMode = () => !!settings.story;
+
   /* ---------- Chỉ số ---------- */
-  const clamp = (k, v) => Math.max(LIMITS[k][0], Math.min(LIMITS[k][1], v));
+  // Chế độ đọc truyện: chỉ số không thể làm người chơi thua (chỉ thua khi chọn sai rõ ràng)
+  const clamp = (k, v) => {
+    let lo = LIMITS[k][0], hi = LIMITS[k][1];
+    if (storyMode()) { if (k === 'TT' || k === 'PIN') lo = 1; if (k === 'DN') hi = 59; }
+    return Math.max(lo, Math.min(hi, v));
+  };
   function applyEffects(eff) {
     if (!eff) return [];
     return Object.keys(eff).map((k) => { S[k] = clamp(k, S[k] + eff[k]); return { k, d: eff[k] }; });
   }
   function statFail() {
+    if (storyMode()) return null;
     const E = STORY.statEndings;
     if (S.DN >= 60) return E.DN;
     if (S.TT <= 0) return E.TT;
@@ -192,6 +203,7 @@
   /* ---------- Đồng hồ đếm ngược ---------- */
   function startTimer(tm) {
     stopTimer();
+    if (storyMode()) return;
     const owner = S.scene;
     const box = $('#timer'), bar = $('#timer-bar'), lbl = $('#timer-label');
     box.hidden = false;
@@ -220,6 +232,10 @@
     if (st && typeof st.tablet === 'function') st = Object.assign({}, st, { tablet: st.tablet(S) });
     if (st && typeof st.fx === 'function') st = Object.assign({}, st, { fx: st.fx(S) });
     if (st && st.sfx) st.sfx.forEach((n, i) => setTimeout(() => sfx(n), i * 350));
+    if (window.SFX && SFX.setMood) {
+      const fxs = (st && st.fx) || [];
+      SFX.setMood(fxs.includes('sunrise') || fxs.includes('dawn') ? 'dawn' : /Màn 3/.test(S.act || '') ? 'tense' : 'night');
+    }
     if (sc.type === 'ending') sfx('sting');
     if (!window.Scene3D || !Scene3D.ok) return;
     Scene3D.setStats(S);
@@ -284,15 +300,24 @@
     typeParagraphs($('#text'), sc.text, () => {
       const total = STORY.endingsList.length, got = Object.keys(read(END_KEY) || {}).length;
       const note = document.createElement('p'); note.className = 'collect';
-      note.textContent = `Bộ sưu tập kết thúc: ${got}/${total}`;
+      note.innerHTML = `${window.EndingIcon ? EndingIcon(id) : ''}<span>Bộ sưu tập kết thúc: ${got}/${total}</span>`;
       $('#text').appendChild(note); note.classList.add('in');
       const box = $('#choices');
       box.append(
         btn('Thử lại từ nút gần nhất', () => { if (checkpoint) { S = clone(checkpoint); S.path.pop(); go(S.scene); } else restart(); }),
+        btn('Chia sẻ kết thúc này', () => shareEnding(sc.title)),
         btn('Về màn hình chính', openMenu, 'ghost')
       );
       box.querySelector('button').focus({ preventScroll: true });
     });
+  }
+
+  function shareEnding(title) {
+    const got = Object.keys(read(END_KEY) || {}).length;
+    const url = CFG.gameUrl || location.href;
+    const text = `Mình vừa mở kết thúc “${title}” trong Kiểm Đếm Ca Đêm · Nhà B4 (${got}/${STORY.endingsList.length} kết thúc). Bạn sẽ đứng ở đâu lúc 5 giờ sáng?`;
+    if (navigator.share) { navigator.share({ title: 'Kiểm Đếm Ca Đêm', text, url }).catch(() => {}); return; }
+    try { navigator.clipboard.writeText(text + ' ' + url).then(() => toast('Đã chép lời mời, dán vào nơi bạn muốn chia sẻ', 'up'), () => toast(url, 'clue')); } catch (e) { toast(url, 'clue'); }
   }
 
   function btn(text, fn, cls) {
@@ -313,7 +338,7 @@
     $('#scene-time').textContent = sc.time || S.time || '';
     $('#text').innerHTML = `
       <div class="summary">
-        <p class="endname">${esc(endInfo.title)}${isNew ? ' <span class="new">mới</span>' : ''}</p>
+        <p class="endname">${window.EndingIcon ? EndingIcon(endId) : ''}<span>${esc(endInfo.title)}${isNew ? ' <span class="new">mới</span>' : ''}</span></p>
         <table>
           <tr><th>Tỉnh táo</th><td>${S.TT}/100</td></tr>
           <tr><th>Tin cậy</th><td>${S.TC}/100</td></tr>
@@ -341,6 +366,7 @@
         btn('✍️ Góp ý, nhận xét cho tác giả', () => openDialog('dlg-feedback')),
         btn('🔔 Đăng ký nhận câu chuyện tiếp theo', () => openDialog('dlg-subscribe')),
         btn('☕ Mời mình cà phê', () => openDialog('dlg-coffee')),
+        btn('Chia sẻ kết thúc của bạn', () => shareEnding(endInfo.title)),
         btn('Chọn màn để thử nhánh khác', () => openDialog('dlg-chapters')),
         btn('Về màn hình chính', openMenu, 'ghost')
       );
@@ -355,7 +381,7 @@
       const nb = btn('Sang ' + sc.next + ' ▶', () => { checkpoint = clone(S); go(sc.nextScene); });
       nb.classList.add('primary'); box.append(nb);
     }
-    box.append(btn('☕ Mời mình cà phê', () => openDialog('dlg-coffee')), btn('Chơi lại từ đầu để tìm nhánh khác', restart), btn('Về màn hình chính', openMenu, 'ghost'));
+    box.append(btn('☕ Mời mình cà phê', () => openDialog('dlg-coffee')), btn('Chia sẻ kết thúc này', () => shareEnding(endInfo.title)), btn('Chơi lại từ đầu để tìm nhánh khác', restart), btn('Về màn hình chính', openMenu, 'ghost'));
     box.querySelector('button').focus({ preventScroll: true });
   }
 
@@ -481,8 +507,9 @@
     const got = read(END_KEY) || {};
     $('#endings-grid').innerHTML = STORY.endingsList.map((e) => `
       <li class="${got[e.id] ? 'got' : 'locked'} ${e.kind}">
+        ${got[e.id] && window.EndingIcon ? EndingIcon(e.id) : '<svg class="eicon" viewBox="0 0 64 64" aria-hidden="true"><text x="32" y="42" text-anchor="middle" font-size="30" fill="currentColor">?</text></svg>'}
         <b>${got[e.id] ? esc(e.title) : '???'}</b>
-        <span>${e.kind === 'act' ? 'Kết màn' : 'Kết thúc thất bại'} · Màn ${e.act || 1}</span>
+        <span>${e.act === 4 && e.kind === 'act' ? 'Kết cuối' : e.kind === 'act' ? 'Kết màn' : 'Kết thúc thất bại'} · Màn ${e.act || 1}</span>
         <small>${esc(e.hint)}</small>
       </li>`).join('');
   }
@@ -545,6 +572,32 @@
     const syncAudio = () => { const m = window.SFX && SFX.isMuted(); audioBtn.textContent = m ? '♪ Tắt' : '♪ Bật'; audioBtn.setAttribute('aria-pressed', m ? 'false' : 'true'); };
     audioBtn.addEventListener('click', () => { unlockAudio(); if (window.SFX) SFX.setMuted(!SFX.isMuted()); syncAudio(); });
     syncAudio();
+
+    // Chế độ đọc truyện
+    const smBtn = $('#btn-story');
+    const syncStory = () => {
+      smBtn.setAttribute('aria-pressed', storyMode() ? 'true' : 'false');
+      smBtn.querySelector('b').textContent = storyMode() ? 'Bật' : 'Tắt';
+      document.body.classList.toggle('story-mode', storyMode());
+      $('#game-act').dataset.mode = storyMode() ? ' · Chế độ đọc' : '';
+    };
+    smBtn.addEventListener('click', () => { settings.story = !settings.story; store(SET_KEY, settings); syncStory(); sfx('click'); });
+    syncStory();
+
+    // Phím tắt: 1–4 hoặc A–D chọn, J sổ tay, H ẩn chữ, M âm thanh, Space/Enter hiện hết chữ
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      const tag = (e.target.tagName || '').toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+      if (document.querySelector('dialog[open]') || document.body.classList.contains('in-menu')) return;
+      const k = e.key.toLowerCase();
+      const idx = '1234'.indexOf(k) >= 0 ? '1234'.indexOf(k) : 'abcd'.indexOf(k);
+      if (idx >= 0) { const b = document.querySelectorAll('#choices button')[idx]; if (b) { e.preventDefault(); b.click(); } return; }
+      if (k === 'j') { e.preventDefault(); $('#btn-journal').click(); }
+      else if (k === 'h') { e.preventDefault(); $('#btn-hide').click(); }
+      else if (k === 'm') { e.preventDefault(); audioBtn.click(); }
+      else if ((k === ' ' || k === 'enter') && tag !== 'button') { e.preventDefault(); $('#text').click(); }
+    });
     const share = $('#btn-share');
     if (share) share.addEventListener('click', () => {
       const url = CFG.gameUrl || location.href;

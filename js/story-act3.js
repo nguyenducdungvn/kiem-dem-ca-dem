@@ -27,7 +27,7 @@
 <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hai bản vẽ tầng 5">
 <defs><pattern id="g8" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#1d4f7c" stroke-width="0.6"/></pattern></defs>
 <rect width="100%" height="100%" fill="#0b2a4a"/><rect width="100%" height="100%" fill="url(#g8)"/>
-<text x="20" y="28" fill="#cfe4ff" font-family="${F}" font-size="14">TẦNG 5 · ĐỐI CHIẾU HAI BẢN VẼ CÙNG NĂM 1979</text>
+<text x="20" y="28" fill="#cfe4ff" font-family="${F}" font-size="14">Tầng 5 · Đối chiếu hai bản vẽ cùng năm 1979</text>
 <g transform="translate(0,40)">${plan(24, 'Bản A', true)}</g>
 <g transform="translate(0,40)">${plan(340, 'Bản B', false)}</g>
 <rect class="hit" data-id="stampA" x="24" y="250" width="270" height="34" fill="#16426b" stroke="#ffd27a"/>
@@ -66,7 +66,7 @@
     /* ===== NÚT 7 ===== */
     nut7: {
       time: '04:06',
-      title: 'NÚT 7 · Căn hộ ấm cúng',
+      title: 'Nút 7 · Căn hộ ấm cúng',
       checkpoint: true,
       danger: true,
       timer: { sec: 25, next: 'n7_het_gio', label: 'Cửa 509 đang khép' },
@@ -183,7 +183,7 @@
     /* ===== NÚT 8 (nút chậm: suy luận) ===== */
     nut8: {
       time: '04:20',
-      title: 'NÚT 8 · Bản vẽ nào',
+      title: 'Nút 8 · Bản vẽ nào',
       checkpoint: true,
       text: (s) => {
         const t = [
@@ -248,7 +248,7 @@
     /* ===== NÚT 9 ===== */
     nut9: {
       time: '04:32',
-      title: 'NÚT 9 · Mười hai nghìn người xem',
+      title: 'Nút 9 · Mười hai nghìn người xem',
       checkpoint: true,
       danger: true,
       timer: { sec: 30, next: 'n9_het_gio', label: 'Hành lang đang dài ra' },

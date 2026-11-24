@@ -261,7 +261,7 @@
     car.position.set(-8, 0, 9); car.rotation.y = 0.35; g.add(car);
     // biển dự án + cẩu tháp
     const sign = textTex([
-      { t: 'DỰ ÁN CẢI TẠO, XÂY DỰNG LẠI NHÀ B4', s: 58, c: '#ffffff' },
+      { t: 'Dự án cải tạo, xây dựng lại nhà B4', s: 62, c: '#ffffff' },
       { t: 'Tòa tái định cư 30 tầng', s: 50, wt: 600, c: '#ffd77a' },
       { t: 'Lễ khởi công: 7:00 sáng thứ Hai', s: 46, wt: 600, c: '#e6edf5' }
     ], { bg: '#0f3b6e', border: '#ffd77a', w: 1280, h: 512 });
@@ -732,7 +732,7 @@
       renderer = new T.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
     } catch (e) { document.documentElement.classList.add('no3d'); return; }
     if (!renderer.getContext()) { document.documentElement.classList.add('no3d'); return; }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.innerWidth < 700 ? 1.25 : 1.5));
     renderer.outputEncoding = T.sRGBEncoding;
     renderer.toneMapping = T.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.15;

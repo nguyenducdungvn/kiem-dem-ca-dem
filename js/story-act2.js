@@ -30,7 +30,7 @@
   for (let c = 0; c < COLS; c++) for (let r = 0; r < ROWS; r++) {
     const [x, y] = cellXY(c, r), id = 'c' + c + '_' + r;
     cells += `<rect class="hit" data-id="${id}" x="${x}" y="${y}" width="${CW - 2}" height="${CH - 2}" fill="#123a5e" stroke="#3d7ab0"/>`;
-    inspect[id] = `Ô cột ${c + 1}, hàng ${r + 1} · Laser: ` + (inRecord(c, r) ? 'có phản xạ, mặt sàn sắt 0,0 cm.' : 'KHÔNG phản xạ. Phía dưới là khoảng không cao năm tầng.');
+    inspect[id] = `Ô cột ${c + 1}, hàng ${r + 1} · Laser: ` + (inRecord(c, r) ? 'có phản xạ, mặt sàn sắt 0,0 cm.' : 'không phản xạ. Phía dưới là khoảng không cao năm tầng.');
   }
   inspect.ho_so = 'Hồ sơ cơi nới 2016 (A. Phát xác nhận): 3,2 m × 3,0 m tính từ mép cửa sổ, trừ khoảng 0,8 m × 1,0 m chỗ bồn nước cũ ở giữa. Tổng 9,6 m².';
   const pathSvg = Object.keys(PATHS).map((k) => {
@@ -45,7 +45,7 @@
 <svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sàn chuồng cọp căn 502">
 <defs><pattern id="g4" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#1d4f7c" stroke-width="0.6"/></pattern></defs>
 <rect width="100%" height="100%" fill="#0b2a4a"/><rect width="100%" height="100%" fill="url(#g4)"/>
-<text x="20" y="28" fill="#cfe4ff" font-family="Roboto Mono, monospace" font-size="14">CHUỒNG CỌP NGOÀI CỬA SỔ CĂN 502 · MẶT BẰNG SÀN · ô 0,4 × 0,5 m</text>
+<text x="20" y="28" fill="#cfe4ff" font-family="Roboto Mono, monospace" font-size="14">Chuồng cọp ngoài cửa sổ căn 502 · Mặt bằng sàn · ô 0,4 × 0,5 m</text>
 <rect class="hit" data-id="ho_so" x="${X0}" y="${Y0 + ROWS * CH + 8}" width="${8 * CW - 2}" height="18" fill="#16426b" stroke="#ffd27a"/>
 <text x="${X0 + 6}" y="${Y0 + ROWS * CH + 21}" fill="#ffd27a" font-family="Roboto Mono, monospace" font-size="11" pointer-events="none">bấm để đọc hồ sơ cơi nới 2016</text>
 ${cells}
@@ -88,7 +88,7 @@ ${pathSvg}
     /* ===== NÚT 4 ===== */
     nut4: {
       time: '02:40',
-      title: 'NÚT 4 · Chuồng cọp',
+      title: 'Nút 4 · Chuồng cọp',
       checkpoint: true,
       danger: true,
       timer: { sec: 20, next: 'n4_het_gio', label: 'Giờ dọn nhà lần hai' },
@@ -222,7 +222,7 @@ ${pathSvg}
     /* ===== NÚT 5 (nút chậm, không có đồng hồ) ===== */
     nut5: {
       time: '03:15',
-      title: 'NÚT 5 · Biên bản điện tử',
+      title: 'Nút 5 · Biên bản điện tử',
       checkpoint: true,
       text: (s) => {
         const t = ['Phần mềm yêu cầu xác nhận lại hồ sơ căn 502 trước 5 giờ. Trên màn hình, một ô nhấp nháy: “Diện tích cơi nới được công nhận: 9,6 m². Giữ nguyên hay điều chỉnh?”'];
@@ -301,7 +301,7 @@ ${pathSvg}
     /* ===== NÚT 6 ===== */
     nut6: {
       time: '03:50',
-      title: 'NÚT 6 · Hộ cuối cùng',
+      title: 'Nút 6 · Hộ cuối cùng',
       checkpoint: true,
       danger: true,
       timer: { sec: 25, next: 'n6_het_gio', label: 'Vòng đồ đạc đang khép' },

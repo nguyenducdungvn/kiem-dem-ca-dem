@@ -6,8 +6,14 @@
   <title>Kiểm Đếm Ca Đêm · Nhà B4</title>
   <meta name="description" content="Đêm cuối trước khi nhà tập thể B4 bị phá dỡ, bạn phải kiểm đếm 40 căn hộ bỏ trống. Nhưng tòa nhà không muốn bị đếm. Truyện tương tác kinh dị 3D bằng tiếng Việt.">
   <meta name="theme-color" content="#07090c">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kiemdem.hlvsuckhoe.com/">
   <meta property="og:title" content="Kiểm Đếm Ca Đêm · Nhà B4">
-  <meta property="og:description" content="Đêm cuối trước khi nhà tập thể B4 bị phá dỡ. Tòa nhà không muốn bị đếm.">
+  <meta property="og:description" content="Đêm cuối trước khi nhà tập thể B4 bị phá dỡ. Tòa nhà không muốn bị đếm. Truyện tương tác kinh dị 3D bằng tiếng Việt, 4 màn, 27 kết thúc.">
+  <meta property="og:image" content="https://kiemdem.hlvsuckhoe.com/images/og-cover.jpg">
+  <meta property="og:locale" content="vi_VN">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/be-vietnam-pro-vietnamese-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/noto-serif-vietnamese-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/fonts.css">
@@ -38,6 +44,10 @@
         <button id="btn-continue" class="cta ghost" hidden>Tiếp tục ca trực</button>
         <button id="btn-start" class="cta">Bắt đầu ca trực</button>
       </div>
+      <div class="mode-row">
+        <button id="btn-story" class="toggle" aria-pressed="false" aria-describedby="story-desc">Chế độ đọc truyện: <b>Tắt</b></button>
+        <span id="story-desc" class="mode-desc">Bật để tắt đồng hồ đếm ngược và không thua vì cạn chỉ số. Hợp với ai muốn đọc thong thả.</span>
+      </div>
       <nav class="menu-links" aria-label="Thông tin">
         <button data-open="dlg-chapters">Chọn màn</button>
         <button data-open="dlg-endings">Bộ sưu tập kết thúc <span id="endings-count" class="pill">0/27</span></button>
@@ -47,7 +57,7 @@
         <button data-open="dlg-subscribe">🔔 Nhận truyện mới</button>
         <button data-open="dlg-coffee">☕ Mời mình cà phê</button>
       </nav>
-      <p class="foot"><span class="version">v1.0.0</span> · Nên đeo tai nghe · Di chuột để soi đèn pin</p>
+      <p class="foot"><span class="version">v1.1.0</span> · Nên đeo tai nghe · Di chuột để soi đèn pin</p>
     </div>
   </section>
 
@@ -123,10 +133,13 @@
       <li>Mở <b>Sổ tay</b> để xem luật đã thu và manh mối. Luật càng nhiều hộ xác nhận thì càng đáng tin.</li>
       <li>Giữ bốn chỉ số: Tỉnh táo, Tin cậy, Độ neo và Pin (chung cả nhóm).</li>
       <li>Nút <b>Xem cảnh</b> ẩn chữ để ngắm bối cảnh. Di chuột để soi đèn pin.</li>
+      <li><b>Chế độ đọc truyện</b> (bật ở màn hình chính): không có đồng hồ đếm ngược, chỉ số không làm bạn thua.</li>
+      <li><b>Phím tắt:</b> 1–4 hoặc A–D để chọn · Space/Enter hiện hết chữ · J mở sổ tay · H ẩn chữ · M bật/tắt âm thanh.</li>
     </ul>
     <h3>Phiên bản <span class="version">v0.3.0</span></h3>
     <ul class="changelog">
-      <li><b>v1.0.0 · 24/11/2026 · Trọn bộ</b>: Màn 4 · Chốt sổ (màn cuối): chơi lại cảnh 5 giờ sáng với con số thay đổi theo lựa chọn, mini-game chọn mốc đo, lần ký cuối cùng, lễ bàn giao chìa khóa, phần kết kể số phận từng nhân vật, 4 kết cuối. Thêm Chọn màn, Góp ý, Nhận truyện mới. Xuất bản trên GitHub Pages.</li>
+      <li><b>v1.1.0 · 24/11/2026</b>: Rà soát toàn bộ. Thêm chế độ đọc truyện (không đồng hồ, không thua vì cạn chỉ số), thẻ minh họa cho 27 kết thúc, nhạc nền đổi theo màn (đêm, căng thẳng, bình minh), phím tắt, nút chia sẻ kết thúc, ảnh xem trước khi chia sẻ link, biểu tượng trang. Sửa chữ hoa có dấu, gợi ý kết thúc, thông tin miễn trừ về thống kê lượt xem.</li>
+      <li><b>v1.0.0 · Trọn bộ</b>: Màn 4 · Chốt sổ (màn cuối): chơi lại cảnh 5 giờ sáng với con số thay đổi theo lựa chọn, mini-game chọn mốc đo, lần ký cuối cùng, lễ bàn giao chìa khóa, phần kết kể số phận từng nhân vật, 4 kết cuối. Thêm Chọn màn, Góp ý, Nhận truyện mới. Xuất bản trên GitHub Pages.</li>
       <li><b>v0.5.0</b>: Màn 3 · Căn 509: căn hộ ghép từ đồ bị bỏ quên, mini-game đối chiếu hai bản vẽ, livestream trước hàng chục nghìn người, 3 kết màn và 3 kết thúc thất bại mới. Thêm thông tin mời cà phê (mã QR BIDV).</li>
       <li><b>v0.4.0</b>: Màn 2 · Cơi nới: chuồng cọp ma, mini-game quét sàn theo hồ sơ, nút đạo đức không đếm giờ, hộ cuối cùng, 3 kết màn và 3 kết thúc thất bại mới, 3 không gian 3D mới.</li>
       <li><b>v0.3.0</b>: Viết lại Màn 1: mở đầu nhảy cóc lúc 5 giờ sáng, thêm khoảnh khắc nhân vật, đồng hồ đếm ngược, ba kết màn, bộ sưu tập kết thúc, âm thanh, màn hình giới thiệu.</li>
@@ -147,7 +160,7 @@
       <li><b>Không nhằm đánh giá chính sách.</b> Bối cảnh lấy cảm hứng từ các chương trình cải tạo chung cư cũ và giải phóng mặt bằng đang diễn ra. Game không nhằm phản ánh, đánh giá hay công kích bất kỳ cá nhân, tổ chức, cơ quan hay chính sách nào.</li>
       <li><b>Không phải tư vấn pháp lý.</b> Các chi tiết về đền bù, hệ số K, kiểm đếm bắt buộc đã được đơn giản hóa để phục vụ cốt truyện. Khi cần thông tin chính xác, hãy tra cứu văn bản chính thức hoặc hỏi cơ quan có thẩm quyền.</li>
       <li><b>Nội dung.</b> Kinh dị tâm lý, không máu me. Có yếu tố căng thẳng, bệnh tật của người thân và giằng xé đạo đức. Khuyến nghị người chơi từ 13 tuổi.</li>
-      <li><b>Dữ liệu.</b> Game chỉ lưu tiến trình và bộ sưu tập kết thúc trong trình duyệt của bạn. Không thu thập và không gửi dữ liệu đi đâu.</li>
+      <li><b>Dữ liệu.</b> Tiến trình chơi và bộ sưu tập kết thúc chỉ được lưu trong trình duyệt của bạn. Trang dùng Cloudflare Web Analytics để đếm lượt xem ẩn danh: không dùng cookie, không lưu địa chỉ IP, không theo dõi bạn qua trang khác. Góp ý chỉ được gửi đi khi chính bạn bấm nút gửi.</li>
       <li><b>Bản quyền.</b> Nội dung truyện thuộc về tác giả. Thư viện và font dùng theo giấy phép ghi ở mục Giới thiệu.</li>
     </ul>
     <button class="close choice"><span class="ct">Đã hiểu</span></button>
@@ -207,6 +220,7 @@
   <script src="js/story-act2.js"></script>
   <script src="js/story-act3.js"></script>
   <script src="js/story-act4.js"></script>
+  <script src="js/icons.js"></script>
   <script src="js/audio.js"></script>
   <script src="js/scene3d.js"></script>
   <script src="js/engine.js"></script>
