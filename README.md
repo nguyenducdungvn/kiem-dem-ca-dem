@@ -2,7 +2,7 @@
 
 **Truyện tương tác kinh dị tâm lý, có bối cảnh 3D, viết bằng tiếng Việt. Chơi miễn phí ngay trên trình duyệt.**
 
-👉 **[Chơi ngay](https://nguyenducdungvn.github.io/kiem-dem-ca-dem/)** · ✍️ **[Góp ý](https://github.com/nguyenducdungvn/kiem-dem-ca-dem/issues/new/choose)** · 🔔 **[Đăng ký nhận màn mới](https://github.com/nguyenducdungvn/kiem-dem-ca-dem/issues/1)** (bấm Subscribe)
+👉 **[Chơi ngay](https://kiemdem.hlvsuckhoe.com/)** · ✍️ **[Góp ý](https://github.com/nguyenducdungvn/kiem-dem-ca-dem/issues/new/choose)** · 🔔 **[Đăng ký nhận màn mới](https://github.com/nguyenducdungvn/kiem-dem-ca-dem/issues/1)** (bấm Subscribe)
 
 ![Màn hình chính](docs/anh/man-hinh-chinh.jpg)
 
@@ -75,7 +75,7 @@ node tools/export.js js/story-act1.js js/story-act2.js js/story-act3.js js/story
 ```
 
 ### Xuất bản
-Repo đã cấu hình để GitHub Pages phục vụ từ nhánh `main`, thư mục gốc. Nếu Pages chưa bật: vào **Settings → Pages → Deploy from a branch → main / (root) → Save**.
+Repo đã cấu hình để GitHub Pages phục vụ từ nhánh `main`, thư mục gốc, tên miền riêng `kiemdem.hlvsuckhoe.com` (tệp `CNAME`; bản ghi CNAME `kiemdem` trên Cloudflare trỏ về `nguyenducdungvn.github.io`). Nếu Pages chưa bật: vào **Settings → Pages → Deploy from a branch → main / (root) → Save**.
 
 ## Bản quyền và miễn trừ
 - Nội dung truyện © Nguyễn Đức Dũng. Mọi nhân vật, địa danh (khu tập thể Tân Hòa, nhà B4) và sự kiện đều hư cấu.

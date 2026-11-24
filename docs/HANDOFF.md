@@ -3,7 +3,7 @@
 > Dán file này vào chat mới (hoặc bảo Claude đọc `claude/kiem-dem-ca-dem-handoff.md` trong Project "App GAME"), **kèm file `kiem-dem-ca-dem.zip` bản mới nhất**. Đọc file này là đủ để làm tiếp. Chỉ mở file code khi cần sửa.
 
 ## 1. Trạng thái
-- **TRỌN BỘ 4 MÀN (v1.0.0), đã đẩy lên GitHub:** https://github.com/nguyenducdungvn/kiem-dem-ca-dem (nhánh `main`). Chơi tại https://nguyenducdungvn.github.io/kiem-dem-ca-dem/ (GitHub Pages). Bản dự phòng: https://claude.ai/artifact/69y8DDznTGGFhhb8Vr9W6M
+- **TRỌN BỘ 4 MÀN (v1.0.0), đã đẩy lên GitHub:** https://github.com/nguyenducdungvn/kiem-dem-ca-dem (nhánh `main`). Chơi tại https://kiemdem.hlvsuckhoe.com/ (GitHub Pages, tên miền riêng; link cũ nguyenducdungvn.github.io/kiem-dem-ca-dem/ tự chuyển về). Bản dự phòng: https://claude.ai/artifact/69y8DDznTGGFhhb8Vr9W6M
 - Toàn game có 10 luật, 27 manh mối, 27 kết thúc (13 kết màn hoặc kết cuối, 14 kết thúc thất bại), tất cả đều tới được. `check.js` đã duyệt 4,26 triệu trạng thái, 0 lỗi.
 - Có màn hình chính, Chọn màn, Bộ sưu tập kết thúc, Góp ý (GitHub Issue điền sẵn hoặc chép nội dung), Nhận truyện mới, Mời cà phê (BIDV 3210256468, NGUYEN DUC DUNG, VietQR), Miễn trừ, Giới thiệu & phiên bản.
 - **Còn trống trong `js/config.js`:** `feedback.email`, `feedback.formUrl`, `subscribe.links` (Facebook/Zalo). Điền khi tác giả gửi.

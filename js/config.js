@@ -5,7 +5,7 @@
 window.GAME_CONFIG = {
   author: 'Nguyễn Đức Dũng',         // Tên tác giả hiển thị
   contact: '',                      // Email hoặc trang cá nhân (không bắt buộc)
-  gameUrl: 'https://nguyenducdungvn.github.io/kiem-dem-ca-dem/',   // Đường dẫn chơi game (GitHub Pages)
+  gameUrl: 'https://kiemdem.hlvsuckhoe.com/',   // Đường dẫn chơi game (GitHub Pages)
   repoUrl: 'https://github.com/nguyenducdungvn/kiem-dem-ca-dem',    // Kho mã nguồn
 
   /* Góp ý của người chơi: mở GitHub Issues với nội dung điền sẵn, hoặc chép để gửi nơi khác */
