@@ -267,7 +267,7 @@ body.in-menu .hud, body.in-menu .stage, body.in-menu .location, body.in-menu .la
 .endings li span { display: block; font-size: 11px; color: #6b665a; }
 .endings li small { display: block; font-size: 12.5px; line-height: 1.45; margin-top: 4px; color: #4a4436; }
 .endings li.locked { background: rgba(60,55,45,0.12); }
-.endings li.locked b { color: #8a826f; letter-spacing: 0.1em; }
+.endings li.locked b { color: #8a826f; }
 .endings li.got.act { border-color: #b8862a; }
 .endings li.got.fail b { color: #8e2a1c; }
 .paper .bank { display: grid; gap: 6px; background: rgba(255,255,255,0.55); padding: 12px; border-radius: 6px; font-family: var(--sans); font-size: 15px; }
@@ -347,3 +347,4 @@ body.in-menu .hud, body.in-menu .stage, body.in-menu .location, body.in-menu .la
 .endings li.got.fail .eicon { color: #8e2a1c; }
 .collect { display: flex; align-items: center; gap: 10px; }
 .summary .endname { display: flex; align-items: center; gap: 12px; }
+.scene-time.as-text { font-family: var(--sans); font-weight: 600; }

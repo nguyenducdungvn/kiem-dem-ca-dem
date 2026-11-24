@@ -1,6 +1,6 @@
 # BÀN GIAO · Kiểm Đếm Ca Đêm (v1.1.0, 24/11/2026)
 
-> Dán file này vào chat mới (hoặc bảo Claude đọc `claude/kiem-dem-ca-dem-handoff.md` trong Project "App GAME"), **kèm file `kiem-dem-ca-dem.zip` bản mới nhất**. Đọc file này là đủ để làm tiếp. Chỉ mở file code khi cần sửa.
+> Dán file này vào chat mới (hoặc bảo Claude đọc `claude/kiem-dem-ca-dem-handoff.md` trong Project "App GAME"), **kèm file `kiem-dem-ca-dem.zip` bản mới nhất, hoặc gắn repo GitHub**. Đọc file này là đủ để làm tiếp. Chỉ mở file code khi cần sửa.
 
 ## 1. Trạng thái
 - **TRỌN BỘ 4 MÀN (v1.1.0), đã đẩy lên GitHub:** https://github.com/nguyenducdungvn/kiem-dem-ca-dem (nhánh `main`). Chơi tại https://kiemdem.hlvsuckhoe.com/ (GitHub Pages, tên miền riêng; link cũ nguyenducdungvn.github.io/kiem-dem-ca-dem/ tự chuyển về). Bản dự phòng: https://claude.ai/artifact/69y8DDznTGGFhhb8Vr9W6M
@@ -62,6 +62,8 @@
 - **Lỗi đã sửa, cần nhớ:** `[hidden]{display:none!important}` (CSS display ghi đè thuộc tính hidden). typeParagraphs dùng token để chặn handler cũ. Timer tự dừng khi đổi cảnh.
 
 ## 6. Việc tiếp theo (đề xuất cho tác giả)
+**Mùa 2 đã có kế hoạch đầy đủ:** `docs/MUA-2.md` (Project: `claude/kiem-dem-mua-2.md`), gồm tên repo `kiem-dem-mua-2`, tên miền `kiemdem2.hlvsuckhoe.com`, bốn tập, bài học Mùa 1 và câu mở đầu cho chat mới.
+
 1. **Bản 1.2:** bản tiếng Anh (tách chuỗi ra `lang/en.js`); PWA cài lên điện thoại, chơi offline; trang thống kê "bao nhiêu % người chơi chọn…" (cần backend nhẹ). Phát hành GitHub Release v1.1.0 bằng tay (phiên Claude không tạo được Release).
 2. **Mùa 2 · "Phiếu bàn giao"** (tuyển tập độc lập, mỗi tập 1 khu nhà, 2–3 màn, dùng chung engine): một làng ven sông trong diện di dời; một chợ cũ sắp thành trung tâm thương mại; một nhà máy cũ thành khu đô thị; một nghĩa trang làng cần quy tập. Thục Anh là nhân vật xuyên suốt, mỗi tập một bộ luật mới, cùng chủ đề "bàn giao trung thực".
 3. **Kết nối người đọc:** tạo Facebook/Zalo và Google Form để điền vào config; viết Discussions "Bạn được kết thúc nào?"; phát hành bản Release cho mỗi tập để người theo dõi nhận thông báo.

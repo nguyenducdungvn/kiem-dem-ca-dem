@@ -14,6 +14,7 @@
 - Gợi ý trong Bộ sưu tập ghi đúng màn của từng kết thúc; kết màn 1 có tiền tố "Kết Màn 1".
 - Miễn trừ nói rõ trang dùng Cloudflare Web Analytics (không cookie, không lưu IP).
 - Biển công trình 3D viết chữ thường; tuổi chị Trâm thống nhất 36 tuổi.
+- Nhãn chữ trên màn hình kết thúc dùng font chữ thường, không còn bị giãn chữ.
 - Giảm độ phân giải dựng hình trên màn hình nhỏ để điện thoại chạy mượt hơn.
 
 ## v1.0.0 · 24/11/2026

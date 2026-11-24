@@ -184,7 +184,7 @@
     const stage = $('#stage');
     stage.className = 'stage' + (sc.danger ? ' danger' : '') + (sc.type ? ' t-' + sc.type : '');
     stage.scrollTop = 0;
-    $('#scene-time').textContent = sc.time || '';
+    $('#scene-time').textContent = sc.time || ''; $('#scene-time').classList.remove('as-text');
     $('#scene-title').textContent = sc.title || '';
     $('#puzzle').innerHTML = '';
     $('#choices').innerHTML = '';
@@ -296,7 +296,7 @@
     const isNew = unlockEnding(id);
     document.body.classList.add('dead');
     setTimeout(() => document.body.classList.remove('dead'), 1400);
-    $('#scene-time').textContent = 'Kết thúc thất bại' + (isNew ? ' · mới mở khóa' : '');
+    $('#scene-time').textContent = 'Kết thúc thất bại' + (isNew ? ' · mới mở khóa' : ''); $('#scene-time').classList.add('as-text');
     typeParagraphs($('#text'), sc.text, () => {
       const total = STORY.endingsList.length, got = Object.keys(read(END_KEY) || {}).length;
       const note = document.createElement('p'); note.className = 'collect';
@@ -335,7 +335,7 @@
     const endInfo = STORY.endingsList.find((e) => e.id === endId);
     const allClues = new Set(); Object.values(STORY.scenes).forEach((x) => (x.gain && x.gain.clues || []).forEach((c) => allClues.add(c)));
     const got = Object.keys(read(END_KEY) || {}).length;
-    $('#scene-time').textContent = sc.time || S.time || '';
+    $('#scene-time').textContent = sc.time || S.time || ''; $('#scene-time').classList.remove('as-text');
     $('#text').innerHTML = `
       <div class="summary">
         <p class="endname">${window.EndingIcon ? EndingIcon(endId) : ''}<span>${esc(endInfo.title)}${isNew ? ' <span class="new">mới</span>' : ''}</span></p>
